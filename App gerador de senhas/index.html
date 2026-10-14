@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas Aleatórias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gerar uma <br><span>Senha Aleatória</span></h1>
+        <div class="display">
+            <input type="text" id="senha" placeholder="Senha">
+            <img src="images/copy.png" onclick="copiarSenha()">
+
+        </div>
+        <button onclick="criarSenha()"><img src="images/generate.png">Gerar Senha</button>
+    </div>
+
+    <script>
+
+        const caixaSenha = document.getElementById("senha");
+        const comprimento = 12;
+
+        const maiusculo = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const minusculo = "abcdefghijklmnopqrstuvwxyz";
+        const num = "0123456789";
+        const simbolo = "@#$%^&*()_+~|}{[]></-=";
+
+        const allChars = maiusculo + minusculo + num + simbolo;
+
+        function criarSenha() {
+            let senha = "";
+            senha += maiusculo[Math.floor(Math.random() * maiusculo.length)];
+            senha += minusculo[Math.floor(Math.random() * minusculo.length)];
+            senha += num[Math.floor(Math.random() * num.length)];
+            senha += simbolo[Math.floor(Math.random() * simbolo.length)];
+
+            while(comprimento > senha.length){
+                senha += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            caixaSenha.value = senha;
+
+        }
+
+        function copiarSenha(){
+         caixaSenha.select()
+         document.execCommand("copy")   
+
+        }
+
+    </script>
+
+</body>
+
+</html>
